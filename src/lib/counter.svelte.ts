@@ -1,15 +1,20 @@
+import { injectable } from "./di";
+
 export class Counter {
-  private value = $state(0)
+  private value = $state(0);
 
   getValue() {
-    return this.value
+    return this.value;
   }
 
   increment = () => {
-    this.value++
-  }
+    this.value++;
+  };
 
   decrement = () => {
-    this.value--
-  }
+    this.value--;
+  };
 }
+
+export const CounterToken1 = injectable(() => new Counter());
+export const CounterToken2 = injectable(() => new Counter());

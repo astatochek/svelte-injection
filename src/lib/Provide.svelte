@@ -1,10 +1,11 @@
-<script lang='ts' generics="T extends any">
-    import type { Snippet } from "svelte";
-    import { type Provider, provide } from "./di";
+<script lang="ts" generics="T extends any">
+  import { setContext, type Snippet } from "svelte";
+  import { type Token } from "./di";
 
-  let {children, ...provider}: Provider<T> & { children: Snippet }  = $props()
+  let { children, for: token }: { for: Token<T> } & { children: Snippet } =
+    $props();
 
-  provide(provider)
+  setContext(token, token.createInjecor());
 </script>
 
 {@render children()}
